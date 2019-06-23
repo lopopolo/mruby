@@ -25,15 +25,15 @@ MRuby::Build.new do |conf|
   # include the default GEMs
   conf.gembox 'default'
   # C compiler settings
-  # conf.cc do |cc|
-  #   cc.command = ENV['CC'] || 'gcc'
-  #   cc.flags = [ENV['CFLAGS'] || %w()]
-  #   cc.include_paths = ["#{root}/include"]
-  #   cc.defines = %w()
-  #   cc.option_include_path = '-I%s'
-  #   cc.option_define = '-D%s'
-  #   cc.compile_options = "%{flags} -MMD -o %{outfile} -c %{infile}"
-  # end
+  conf.cc do |cc|
+    cc.command = ENV['CC'] || 'gcc'
+    cc.flags = [ENV['CFLAGS'] || %w()]
+    cc.include_paths = ["#{root}/include"]
+    cc.defines = %w(MRB_UTF8_STRING)
+    cc.option_include_path = '-I%s'
+    cc.option_define = '-D%s'
+    cc.compile_options = "%{flags} -MMD -o %{outfile} -c %{infile}"
+  end
 
   # mrbc settings
   # conf.mrbc do |mrbc|
